@@ -162,18 +162,33 @@ print_types(test) """
 #! SPECİAL METHODS (DUNDER METHODS)
 class Person:
   compony = "clarusway"
+  person_count = 0
 
   #! Otomatik run olur biz instance ı oluşturduğumuzda
   def __init__(self,name,age, gender="male"):
       self.name = name
       self.age = age
       self.gender = gender
+      Person.person_count = Person.person_count + 1
+
+
+  def __str__(self):
+    return f"{self.name} - {self.age}"
 
   def get_details(self):
     print(f"{self.name} - {self.age} - {self.gender}")
 
 
 person1 =Person("victor", 37)
-person1.get_details()
+person2 =Person("henry", 37)
 
+# print(Person.person_count)
+# person1.get_details()
+
+
+
+
+#! __str__
+print(person1)
+print(person2)
 
