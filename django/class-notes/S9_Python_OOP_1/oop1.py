@@ -170,6 +170,7 @@ class Person:
       self.age = age
       self.gender = gender
       Person.person_count = Person.person_count + 1
+      
 
 
   def __str__(self):
@@ -186,9 +187,44 @@ person2 =Person("henry", 37)
 # person1.get_details()
 
 
-
-
 #! __str__
 print(person1)
 print(person2)
+
+
+
+#! OOP PRİNCİPLES
+
+#? Encapsulation
+ # The princible in which we determine how much of the classes, data and methods can be viewed and how much can be changed by the user.
+
+ # kullanıcı tarafından sınıfların, verilerin ve metodların ne kadarının görüntülenebileceğini, ne kadarının değiştirilebileceğini belirlendiğimiz yapı
+
+
+    # public - private - protected (not in python or js)
+    # there is not a complete encapsulation in python
+
+
+
+
+
+
+#? Abstraction
+  # Abstraction is the process of hiding the internal complex details of an application from the outer world. Abstraction is used to describe things in simple terms. It's used to create a boundary between the application and the client programs.  
+    # like coffee machine in real life. you dont need to know how it works but you know its functionality
+    
+    # kullanıcı gereksiz detaylardan ve bilmesine ihtiyaç olmayan yapıdan uzaklaştırarak yormamak - soyutlama
+
+
+
+
+
+
+
+
+
+
+
+
+
 
