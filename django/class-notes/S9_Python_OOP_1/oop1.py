@@ -85,11 +85,95 @@ print_types(test) """
 
 
 
+# class Person :
+#   compony = "clarusway"
+
+
+# person1 = Person()
+# print(person1.compony)
+
+# person2 = Person()
+# print(person2.compony)
+
+
+# person1.compony = "tesla" #! Bu sadece bu instance i etkiler ve sadece compony bu person da değişir.
+# print(person1.compony)
+
+# person2.location = "Turkey"
+# print(person2.location)
+# print(person1.location) #! Burda olmaz
+
+
+#! SELF keyword and methods
+
+# class Person :
+#   compony = "clarusway"
+
+#   def test(self):
+#     print("test")
+
+#   def set_details(self, name, age):
+#          self.name = name
+#          self.age = age
+
+
+#   def get_details(self):
+#     print(f"{self.name} - {self.age}")
+
+
+#! staticmethod: self'e ihtiyaç duymayacağımız metodlarda kullabiliriz. Self sonuçta büyük bir instanceı temsil edebilir, yani performans için kullanılabilir.
+  # @staticmethod #? bunu yapınca instance göre değişmiyor hep aynı çalışıyor her zaman ve parametre almazlar
+#   def salute():
+#     print("Hı there!")
 
 
 
+# person1 = Person()
+# person2 = Person()
+
+
+#! burada self keyword u person1 ve person2
+# person1.test()
+# person2.test()
+
+# person1.name = "erhan"
+# person1.age = 31
+
+# person1.get_details() 
+
+# person2.name = "asli"
+# person2.age = 27
+
+# person2.get_details() 
+
+#! Yukarıdaki gibi self hangi instance ile çalışıyorsa o olur
+
+
+# person2.set_details("erhan", 33)
+# person2.get_details()
+
+
+#? JS'deki "setter" ve "getter" methodları, pythonda da mevcuttur.
+#! get_method_name(self)
+#! set_method_name(self, parameters)
 
 
 
+#! SPECİAL METHODS (DUNDER METHODS)
+class Person:
+  compony = "clarusway"
+
+  #! Otomatik run olur biz instance ı oluşturduğumuzda
+  def __init__(self,name,age, gender="male"):
+      self.name = name
+      self.age = age
+      self.gender = gender
+
+  def get_details(self):
+    print(f"{self.name} - {self.age} - {self.gender}")
+
+
+person1 =Person("victor", 37)
+person1.get_details()
 
 
