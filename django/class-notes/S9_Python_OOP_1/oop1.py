@@ -170,7 +170,7 @@ class Person:
       self.age = age
       self.gender = gender
       Person.person_count = Person.person_count + 1
-      
+
 
 
   def __str__(self):
@@ -193,7 +193,13 @@ print(person2)
 
 
 
-#! OOP PRİNCİPLES
+
+#! OOP Principles (4 pillars)
+    #? Encapsulation
+    #? Abstraction
+    #? Inheritance
+    #? Polymorphism
+
 
 #? Encapsulation
  # The princible in which we determine how much of the classes, data and methods can be viewed and how much can be changed by the user.
@@ -207,6 +213,33 @@ print(person2)
 
 
 
+class Person:
+    company = "clarusway"
+
+    
+    #  automatically runs when the instance is created
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self._id = 5000
+        self.__number = 200
+
+
+    def __str__(self):
+        return f"{self.name} - {self.age}"
+        
+    def get_details(self):
+        print(f"{self.name} - {self.age}")
+    
+
+person1 = Person("victor", 33)
+print(person1._id)
+person1._id = 4000
+print(person1._id)
+
+# print(person1.__number)
+print(person1._Person__number)
+
 
 
 #? Abstraction
@@ -214,6 +247,25 @@ print(person2)
     # like coffee machine in real life. you dont need to know how it works but you know its functionality
     
     # kullanıcı gereksiz detaylardan ve bilmesine ihtiyaç olmayan yapıdan uzaklaştırarak yormamak - soyutlama
+
+
+liste = [2, 3,5,1,4]
+liste.sort() 
+print(liste) 
+
+
+# class Update(models.Model):
+#     updated = models.DateTimeField("auto_now_true")
+    
+#     class Meta:
+#         abstract = True
+        
+# class Question(Update):
+#     pass
+        
+# class Answer(Update):
+#     pass
+
 
 
 
