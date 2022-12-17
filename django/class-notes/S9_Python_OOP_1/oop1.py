@@ -195,6 +195,13 @@ print(person2)
 
 
 #! OOP Principles (4 pillars)
+
+# * encapsulation => izinsiz girişleri ve değiştirmeleri engelleme (python da tam olarak uygulaması yoktur.)
+# * abstraction   => kullanıcın bilmesinin gerek olmayanını gizleme
+# * polymorhism   => overwriting = parent'tan gelen yapı ihtiyacımızı tam karşılamıyorsa update edebilmemiz.
+#* overloading = parent'tan gelen yapıyı farklı parametrelerle değiştirebilmemiz. veya methodu birden farklı tanımlayabilmemizdir. Verilen parametlere göre kendisi seçerek kullanır.
+# * inheritance   => kalıtım. Parent'tan chield'a aktarılması
+
     #? Encapsulation
     #? Abstraction
     #? Inheritance
@@ -267,10 +274,62 @@ print(liste)
 #     pass
 
 
+#? Inheritance
+
+class Person:
+    compony= "clarusway"
+
+    def __init__(self,name,age):
+        self.name= name
+        self.age= age
+
+    def __str__(self):
+        return f"{self.name}"
+
+    def get_details(self):
+        print(self.name,self.age)
+
+#! Inheratence yaptık burda persondan 
+class Employee(Person):
+    #! Burda parent taki init bize yaramadı o yüzden tekrar yazdık.
+    def __init__(self,name,age,path):
+        # self.name= name
+        # self.age= age
+
+        #! Bununla parenta ki bütün attrıbuteleri alıyoruz.Yukarıdakileri tekrar yazmaya gerek kalmadı
+        super().__init__(name,age)
+        self.path= path
+
+
+# emp1 = Employee("barry", 20)
+# emp1.get_details()
+# print(emp1.compony)
+
+emp1 = Employee("barry", 20,"FS")
+emp1.get_details()
+print(emp1.compony)
+
+
+# emp2 = Employee("erhan", 31)
+# emp2.get_details()
+
+emp2 = Employee("erhan", 31,"FS")
+emp2.get_details()
 
 
 
 
+#?Polymorphism
+
+#! Polymorphism, bir programlama dilinde bir nesnenin birden fazla şekilde davranabileceği anlamına gelir. Bu, aynı adı taşıyan farklı metotların veya fonksiyonların, farklı türlerde veriler için farklı şekillerde çalıştırılmasını sağlar.
+
+#? Polymorphism, Object Oriented Programming (OOP) yönteminde önemli bir kavramdır ve genellikle inheritance (kalıtım) ile birlikte kullanılır. Örneğin, bir "Kedi" sınıfı oluşturabilir ve bu sınıfın "Miyavla" metodunu tanımlayabiliriz. Daha sonra, "Tekir" sınıfını "Kedi" sınıfından kalıtım alarak oluşturabiliriz. Bu sınıfta, "Miyavla" metodunu yeniden tanımlayabilir ve bu metodun, "Tekir" sınıfı için uygun bir şekilde çalışmasını sağlayabiliriz.
+
+#!Polymorphism, bir programın çeşitlilik ve esneklik kazanmasına yardımcı olur ve genellikle kod tekrarını azaltır.
+
+
+#* Overriding
+#? Overriding is an object-oriented programming feature that enables a child class to provide different implementation for a method that is already defined and/or implemented in it's parent class or one of it's parent classes.
 
 
 
