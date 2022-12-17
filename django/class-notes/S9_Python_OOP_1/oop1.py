@@ -289,31 +289,53 @@ class Person:
     def get_details(self):
         print(self.name,self.age)
 
+
+class Lang:
+    def __init__(self,langs):
+        self.langs = langs
+
+    def display_langs(self):
+        print(self.langs)
+
+
+
+
 #! Inheratence yaptık burda persondan 
-class Employee(Person):
+class Employee(Person, Lang):
     #! Burda parent taki init bize yaramadı o yüzden tekrar yazdık.
-    def __init__(self,name,age,path):
+    def __init__(self,name,age,path,langs):
         # self.name= name
         # self.age= age
 
         #! Bununla parenta ki bütün attrıbuteleri alıyoruz.Yukarıdakileri tekrar yazmaya gerek kalmadı
         super().__init__(name,age)
         self.path= path
+        self.langs = langs
+#! super() kullanınca self parametresine gerek kalmaz ve ilk parenti temsil ettiğimizi belirtir.
+
+        def get_details(self):
+            # print(self.name,self.name,self.age)
+
+            #? parenttan get_details ı miras aldık
+            super().get_details()
+            print(self.path)
 
 
 # emp1 = Employee("barry", 20)
 # emp1.get_details()
 # print(emp1.compony)
 
-emp1 = Employee("barry", 20,"FS")
+emp1 = Employee("barry", 20,"FS","JS")
 emp1.get_details()
+emp1.display_langs()
 print(emp1.compony)
 
 
 # emp2 = Employee("erhan", 31)
 # emp2.get_details()
 
-emp2 = Employee("erhan", 31,"FS")
+emp2 = Employee("erhan", 31,"FS","Java")
+emp2.display_langs()
 emp2.get_details()
 
 
@@ -332,9 +354,22 @@ emp2.get_details()
 #? Overriding is an object-oriented programming feature that enables a child class to provide different implementation for a method that is already defined and/or implemented in it's parent class or one of it's parent classes.
 
 
+#!parent'tan gelen yapıyı farklı parametrelerle değiştirebilmemiz. veya methodu birden farklı tanımlayabilmemizdir. Verilen parametlere göre kendisi seçerek kullanır.
+
+#? Two or more methods have the same name but different numbers of parameters or different types of parameters, or both. These methods are called overloaded methods and this is called method overloading.The concept of overloading simply does not apply to python(give parameters None default value - or - multipledispatch package)
+
+#!Python overloading modelini desteklemez. Bunu, ekstra moduller ile gerçekleştirebilirsiniz.
+
+class Employee(Person):
+   
+    def __init__(self,name,age,path):
+        super().__init__(name,age)
+        self.path= path
 
 
-
+    def get_details(self, salary=None, duration=None):
+        super().get_details()
+        print(self.path)
 
 
 
