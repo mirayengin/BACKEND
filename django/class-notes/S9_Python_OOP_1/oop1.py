@@ -372,5 +372,95 @@ class Employee(Person):
         print(self.path)
 
 
+#! OTHER TOPİCS
+
+print(Employee.mro()) #? kalıtım zincirini görüyoruz nerden miras aldığını
+print(help(Employee)) #?GBT sini cıkarır
+
+print(emp1.__init__)
+
+print(isinstance(emp1, Employee))
+
+print(issubclass(Lang, Person))
+
+
+#? getattr(instance, attribute) : returns attribute value of instance
+#! setattr(instance, attribute, new value) : update attribute of instance
+#? hasattr(instance, attribute) : return boolean
+#! delattr(instance, attribute) : delete attribute of instance
+
+# print(getattr(emp1, "name"))
+# x = getattr(emp1, "name")
+# print(x)
+
+setattr(emp1, "name", "qadir")
+print(getattr(emp1, "name"))
+
+print(hasattr(emp1, "name"))
+delattr(emp1, "age")
+print(emp1, "age")
+print(emp1.__dict__)
+
+
+#? İNNER CLASS
+
+from django.db import models
+
+class Makale(models.Model):
+    name = models.CharField(max_length=50)
+    author = models.CharField(max_length=50)
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = "makaleler"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
