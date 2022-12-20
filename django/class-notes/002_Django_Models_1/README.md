@@ -39,3 +39,16 @@ View tables in Admin Site -Register tables in admin.py
    26  django-admin startproject main .
    27  python manage.py runserver
    28  python manage.py runserver
+
+   ORM-> python ile yazılan sorgu kodlarını arka plandaki database için SQL formatına çevirir.
+
+
+MODELS İÇİN
+
+   1.python manage.py createsuperuser
+2.username belirleyin
+3.emaili bos gecebilirsiniz.
+4.password yazsaniz da gorunmuyor ama yazabiliyorsunuz, bir sifre belirleyin, tekrar sordugunda ayni sifreyi bir daha yazin
+5.python manage.py runserver ile tekrar baslatin
+6.url'nin sonuna admin yazarak login sayfasina gecin
+7.user ve password bilginizle giris yapin
