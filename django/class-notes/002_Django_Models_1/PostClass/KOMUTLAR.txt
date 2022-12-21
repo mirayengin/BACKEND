@@ -49,12 +49,7 @@ PROJE OLUŞTUR
 django-admin startproject projectname .
 (içiçe olmadan proje başlatma komutu. eğer nokta koymazsak projeyi içiçe klasör yapısıyla oluşturyor. ilk oluşturmada main dosya ismi tercihi bestpractice.)
 
-SERVER ÇALIŞTIR
-python manage.py runserver
-(SERVERyi ayağa kaldırma default port 8000)
 
-PORT NUMARASINI DEĞIŞTIRME
-python manage.py runserver 8080
 
 SERVER DURDUR
 ctrl + C
@@ -63,6 +58,15 @@ APP OLUŞTURMA
 python manage.py startapp (appname)
 (appname)appı oluştrduk)(bunu yaptıktan sonra proje dizinine gidip settings.py e girip
 installed appse appimizi tanıtmamız gerekiyor)
+Sonra app oluştuktan sonra main settings.py ye oluşturulan app ın ismini yazınız.
+
+SERVER ÇALIŞTIR
+python manage.py runserver
+(SERVERyi ayağa kaldırma default port 8000)
+
+PORT NUMARASINI DEĞIŞTIRME
+python manage.py runserver 8080
+
 
 REQUIREMENTS.TXT DOSYASıNı KULLANARAK PAKETLERI YÜKLEDIK
 pip install -r requirements.txt
