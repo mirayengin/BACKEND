@@ -10,6 +10,8 @@ from rest_framework import status
 # Create your views here.
 
 
+
+
 def home(request):
     return HttpResponse('<h1>API Page</h1>')
 
