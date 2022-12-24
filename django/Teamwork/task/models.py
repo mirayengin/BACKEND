@@ -21,7 +21,7 @@ class Album(models.Model):
   def __str__(self):
     return self.name
   
-class Lyric(models.Model):
+class C(models.Model):
   title = models.CharField(max_length=100)
   content = models.TextField(null = False, blank=True)
   
