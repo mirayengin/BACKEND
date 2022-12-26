@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,get_list_or_404
 from .models import (
   Artist,
   Song,
@@ -20,7 +20,52 @@ from rest_framework import status
 #   return HttpResponse("Welcome TASK page")
 
 @api_view(["GET"])
-def artistList(request):
+def get_artistList(request):
   artists = Artist.objects.all()
   seriliazer = ArtistSerializer(artists, many=True)
   return Response(seriliazer.data)
+
+
+@api_view(["GET"])
+def artist_detail(request, pk ):
+  # artists = Artist.objects.get(id=pk)
+  artists = get_list_or_404(Artist, id=pk)
+  seriliazer = ArtistSerializer(artists)
+  return Response(seriliazer.data)
+
+
+
+
+
+
+
+
+
+
+@api_view(["POST"])
+def post_artistList(request):
+  serializer = ArtistSerializer(data=request.data)
+  if serializer.is_valid():
+    serializer.save()
+    message = {
+      "message": "Artist  saved successfully!"
+    }
+    return Response(message, status=status.HTTP_201_CREATED)
+  return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(["GET", "POST"])
+def artist_list(request):
+  if(request.method == "GET"):
+    artists = Artist.objects.all()
+    seriliazer = ArtistSerializer(artists, many=True)
+    return Response(seriliazer.data)
+  elif(request.method == "GET"):
+    serializer = ArtistSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      message = {
+      "message": "Artist  saved successfully!"
+    }
+      return Response(message, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)

@@ -3,7 +3,7 @@ from django.db import models
 class Artist(models.Model):
   first_name = models.CharField(max_length=50, null = False, blank = True)
   last_name = models.CharField(max_length=50, null = True, blank = True)
-  artist_pic = models.ImageField(upload_to='artists')
+  artist_pic = models.ImageField(upload_to='artists', blank=True, null=True)
   num_stars = models.IntegerField(default=0, blank = True)
   
   def __str__(self):
