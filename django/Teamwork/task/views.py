@@ -82,3 +82,36 @@ def artist_update(request,pk):
     }
     return Response(seriliazer.data, status=status.HTTP_201_CREATED)
   return Response(seriliazer.error, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(["DELETE"])
+def artist_delete(request,pk):
+  artist = get_list_or_404(Artist, id=pk)
+  artist.delete()
+  message = {
+      "message" : "Artist DELETE"
+    }
+  return Response(message)
+
+
+
+@api_view(["DELETE","PUT"])
+def artist_update_delete(request, pk):
+  if request.metod == "PUT":
+    artist = get_list_or_404(Artist, id=pk)
+    seriliazer = ArtistSerializer(instance=artist, data=request.data)
+    if seriliazer.is_valid():
+      seriliazer.save()
+      message = {
+        "message" : "Updated Put"
+      }
+      return Response(seriliazer.data, status=status.HTTP_201_CREATED)
+    return Response(seriliazer.error, status=status.HTTP_400_BAD_REQUEST)
+  elif request.metod == "PUT":
+    artist = get_list_or_404(Artist, id=pk)
+    artist.delete()
+    message = {
+      "message" : "Artist DELETE"
+    }
+    return Response(message)
