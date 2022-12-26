@@ -11,8 +11,12 @@ from .views import (
     # student_api_get_update_delete
     
     #! class views
-    StudentListCreate,
-    StudentDetail,
+    # StudentListCreate,
+    # StudentDetail,
+    StudentCV,
+    StudentDetailCV,
+    # StudentGAV,
+    # StudentDetailGAV,
 )
 
 urlpatterns = [
@@ -27,6 +31,10 @@ urlpatterns = [
     # path('student/<int:pk>', student_api_get_update_delete)
     
     #! class views
-    path("student/", StudentListCreate.as_view()),
-    path("student/<int:pk>", StudentDetail.as_view()),
+    path("student/", StudentCV.as_view()),
+    path("student/<int:pk>", StudentDetailCV.as_view()),
+    # path("student/", StudentGAV.as_view()),
+    # path("student/<int:pk>", StudentDetailGAV.as_view()),
+    # path("student/", StudentListCreate.as_view()),
+    # path("student/<int:pk>", StudentDetail.as_view()),
 ]

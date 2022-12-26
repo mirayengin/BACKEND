@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from rest_framework.views import APIView
+# from rest_framework.generics  import GenericAPIView, mixins
+from rest_framework.generics import GenericAPIView, mixins,ListCreateAPIView, RetrieveUpdateDestroyAPIView
 # my imports
 
 from .models import Student, Path
@@ -176,9 +178,60 @@ class StudentDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self, request, pk):
+        
+
         student = self.get_obj(pk)
         student.delete()
         data = {
             "message": f"Student {student.last_name} deleted successfully"
         }
         return Response(data)
+
+
+#!GENERİCAPIViews
+
+#?GenericApiViews
+
+#? Mixins
+
+class StudentGAV(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin, GenericAPIView):
+    queryset=Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+
+class StudentDetailGAV(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin, GenericAPIView):
+
+    queryset=Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+    
+#! Concrete Views
+
+class StudentCV(ListCreateAPIView):
+
+    queryset=Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+class StudentDetailCV(RetrieveUpdateDestroyAPIView):
+    queryset=Student.objects.all()
+    serializer_class = StudentSerializer
