@@ -19,12 +19,14 @@ from .views import (
     # StudentGAV,
     # StudentDetailGAV,
     StudentMVS,
+    PathMVS
 
 )
 
 
 router = routers.DefaultRouter()
 router.register("student", StudentMVS)
+router.register("path", PathMVS)
 
 
 
@@ -48,6 +50,6 @@ urlpatterns = [
 
     # path("student/", StudentListCreate.as_view()),
     # path("student/<int:pk>", StudentDetail.as_view()),
-    
+
     path("", include(router.urls)),
 ]

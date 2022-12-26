@@ -1,5 +1,5 @@
 # res framework import
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,action
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render, HttpResponse, get_object_or_404
@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 # from rest_framework.generics  import GenericAPIView, mixins
 from rest_framework.generics import GenericAPIView, mixins,ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
+
 # my imports
 
 from .models import Student, Path
@@ -254,7 +255,27 @@ class StudentDetailCV(RetrieveUpdateDestroyAPIView):
 # Both of these come with a trade-off. Using regular views and URL confs is more explicit and gives you more control. ViewSets are helpful if you want to get up and running quickly, or when you have a large API and you want to enforce a consistent URL configuration throughout.
 
 class StudentMVS(ModelViewSet):
-    
+
     queryset=Student.objects.all()
     serializer_class = StudentSerializer
 
+    # ! Spesifik öğrenci için olsa detail=True olacaktı
+    @action(detail=False, methods=["GET"])
+    def student_count(self, request):
+        count={
+            "student-count": self.queryset.count()
+        }
+        return Response(count)
+
+
+
+class PathMVS(ModelViewSet):
+
+    queryset=Student.objects.all()
+    serializer_class = PathSerializer
+
+    @action(detail=True, methods=["GET"])
+    def student_names(self, request, pk=None):
+        path = self.get_object()
+        students = path.students.all()
+        return Response([i.first_name for i in students])
