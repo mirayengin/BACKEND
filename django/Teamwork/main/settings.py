@@ -21,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-m(8f7g+d2)rdkxrok9)27(7%=^vl6+d%f6e@*!))e_g3^9toq0'
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,12 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    #myapps
-    'task',
-
-    #thirdpart apps
+    
+    # tridpart apps
     'rest_framework',
+    
+    # myapps
+    'task',
 ]
 
 MIDDLEWARE = [
@@ -124,10 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
 
-#! bu hangi klasöre yükkleyeceğini söylüyordu
-MEDIA_ROOT = BASE_DIR / 'media'
+#! image upload için,
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
-
 class Artist(models.Model):
   first_name = models.CharField(max_length=50, null = False, blank = True)
   last_name = models.CharField(max_length=50, null = True, blank = True)
@@ -21,13 +18,12 @@ class Album(models.Model):
   def __str__(self):
     return self.name
   
-class C(models.Model):
+class Lyric(models.Model):
   title = models.CharField(max_length=100)
   content = models.TextField(null = False, blank=True)
   
   def __str__(self):
     return self.title
-  
   
 class Song(models.Model):
   album = models.ForeignKey(Album, on_delete=models.CASCADE,

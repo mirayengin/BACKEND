@@ -1,29 +1,27 @@
 from rest_framework import serializers
-
-from .models import Artist
-from .models import Album
-from .models import Lyric
-from .models import Song
-
+from .models import (
+  Artist,
+  Album,
+  Lyric,
+  Song
+)
 
 class ArtistSerializer(serializers.ModelSerializer):
   class Meta:
     model = Artist
-    fields = ["first_name","last_name"]
-
+    fields = ["first_name", "last_name"]
+    
 class AlbumSerializer(serializers.ModelSerializer):
   class Meta:
     model = Album
-    fields = ["artist","name"]
-
-
+    fields = ["artist", "name"]
+    
 class LyricSerializer(serializers.ModelSerializer):
   class Meta:
     model = Lyric
-    fields = ["title","contact"]
-
-
+    fields = ["title", "content"]
+    
 class SongSerializer(serializers.ModelSerializer):
   class Meta:
     model = Song
-    fields = ["artist","album"]
+    fields = ["name", "artist"]
