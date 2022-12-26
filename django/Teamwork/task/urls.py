@@ -1,11 +1,17 @@
 from django.urls import path
-from .views import get_artistList,post_artistList,artist_list,artist_detail
+from .views import (
+    get_artist_list,
+    post_artist_list,
+    artist_list,artist_detail,
+    artist_update
+    )
 
 
 urlpatterns = [
     # path('', artist_list),
-    path('get/', get_artistList),
-    path('post/', post_artistList),
-    path('artist/', artist_list),
-    path('artist/<int:pk>', artist_detail),
+    path('/get', get_artist_list),
+    path('/post', post_artist_list),
+    path('/artist/', artist_list),
+    path('/<int:pk>', artist_detail),
+    path('/put/<int:pk>', artist_update),
 ]

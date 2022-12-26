@@ -20,7 +20,7 @@ from rest_framework import status
 #   return HttpResponse("Welcome TASK page")
 
 @api_view(["GET"])
-def get_artistList(request):
+def get_artist_list(request):
   artists = Artist.objects.all()
   seriliazer = ArtistSerializer(artists, many=True)
   return Response(seriliazer.data)
@@ -43,7 +43,7 @@ def artist_detail(request, pk ):
 
 
 @api_view(["POST"])
-def post_artistList(request):
+def post_artist_list(request):
   serializer = ArtistSerializer(data=request.data)
   if serializer.is_valid():
     serializer.save()
@@ -69,3 +69,16 @@ def artist_list(request):
     }
       return Response(message, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(["PUT"])
+def artist_update(request,pk):
+  artist = get_list_or_404(Artist, id=pk)
+  seriliazer = ArtistSerializer(instance=artist, data=request.data)
+  if seriliazer.is_valid():
+    seriliazer.save()
+    message = {
+      "message" : "Updated Put"
+    }
+    return Response(seriliazer.data, status=status.HTTP_201_CREATED)
+  return Response(seriliazer.error, status=status.HTTP_400_BAD_REQUEST)
