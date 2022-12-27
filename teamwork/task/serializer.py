@@ -30,8 +30,8 @@ class SongSerializer(serializers.ModelSerializer):
 
 
 class SongLyricSerializer(serializers.ModelSerializer):
-  items = SongSerializer(many=True, read_only=True)
+  songs = SongSerializer(many=True)
 
   class Meta:
     model = Lyric
-    fields = ["title","items"]
+    fields = ["title","songs"]
