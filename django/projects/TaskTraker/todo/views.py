@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
 
 
 from .models import Todo
@@ -30,8 +32,8 @@ def todo_list_create(request):
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
-def todo_detail(request, id):
-    todo = get_object_or_404(Todo, id=id)
+def todo_detail(request, pk):
+    todo = get_object_or_404(Todo, id=pk)
 
     if request.method == 'GET':
         # todo = Todo.objects.get(id=id)
@@ -48,3 +50,19 @@ def todo_detail(request, id):
     elif request.method == 'DELETE':
         todo.delete()
         return Response({'message': 'todo deleted succesfully'})
+
+
+class Todos(ListCreateAPIView):
+    queryset = Todo.objects.filter(is_done=False)
+    serializer_class = TodoSerializer
+
+
+class TodoDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Todo.objects.filter(is_done=False)
+    serializer_class = TodoSerializer
+    # lookup_field = 'id'
+
+
+class TodoMVS(ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer

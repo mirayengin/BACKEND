@@ -13,4 +13,5 @@ class TodoSerializer(serializers.ModelSerializer):
             'priority',
             'is_done',
             'created_date',
+            'updated_date'
         )
