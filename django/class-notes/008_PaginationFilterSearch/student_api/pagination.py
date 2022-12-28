@@ -15,7 +15,7 @@ class CustomLimitOffsetPagination(LimitOffsetPagination):
 class CustomCursorPagination(CursorPagination):
   cursor_query_param = 'imlec'  # browser adresinda adet yazdı 
   page_size = 5
-  ordering ='_id'
+  ordering ='-id'
 
 
 
