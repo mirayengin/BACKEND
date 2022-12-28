@@ -257,12 +257,18 @@ class StudentDetailCV(RetrieveUpdateDestroyAPIView):
 
 # Both of these come with a trade-off. Using regular views and URL confs is more explicit and gives you more control. ViewSets are helpful if you want to get up and running quickly, or when you have a large API and you want to enforce a consistent URL configuration throughout.
 
-from .pagination import CustomPageNumberPagination
+from .pagination import (
+    CustomPageNumberPagination,
+    # CustomLimitOffsetPagination,
+    CustomCursorPagination
+    )
 class StudentMVS(ModelViewSet):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    pagination_class = CustomPageNumberPagination
+    # pagination_class = CustomPageNumberPagination
+    # pagination_class = CustomLimitOffsetPagination
+    pagination_class = CustomCursorPagination
     
     @action(detail=False, methods=["GET"])
     def student_count(self, request):
