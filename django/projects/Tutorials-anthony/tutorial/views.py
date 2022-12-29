@@ -11,7 +11,8 @@ from .pagination import  (
 )
 
 
-# from django_filters.rest_framework import DjangoFilterBackend
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 # Create your views here.
 
 class TutorialMVS(ModelViewSet):
@@ -24,7 +25,17 @@ class TutorialMVS(ModelViewSet):
   pagination_class = CustomCursorPagination
 
   #?filter
-  # filter_backends = [DjangoFilterBackend]
+  filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
   filterset_fields = ['id','title']
-  search_fields = ['title']
+  search_fields = ['title', 'description']
+
+  #?sadece buna göre sırala
+  ordering_fiels = ['description']
+
+  #?ilk açıldığında otomatik sırala
+  ordering = ['title']
+
+  # search_fields=['^title']  #* baş harfine göre arama yapmak için,
+  # ordering_fields = ['id']  #* filter boxta hangi seçenekler çıksın istiyorsanız onu yazıyorsunuz
+  # ordering = ['-title']  #* default olarak ilk açıldığında buraya yazdığımıza göre sıralıyor
   
