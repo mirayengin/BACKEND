@@ -1,0 +1,72 @@
+# Paketler
+
+pip install Faker => Fake veri oluşturmaya yarayan paketi yüklüyor
+
+pip install django-filter => Filter paketini yüklüyor
+
+## settings.py 'de app'e import yapılan komut
+
+'django_filters',
+
+## settings.py 'a eklediğimiz ama sonra metodunu (pagination.py)'de yazdığımız global importlar
+
+REST_FRAMEWORK = {
+'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.CursorPagination',
+'PAGE_SIZE': 30,
+'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination',
+'PAGE_SIZE': 30,
+'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
+'PAGE_SIZE': 20,
+'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
+
+<----------------------------------------------------------------------------------------->
+
+# Derste kullanılan metodlar (pagination.py)
+
+## Importlar
+
+from rest_framework.pagination import (
+PageNumberPagination,
+LimitOffsetPagination,
+CursorPagination,
+)
+
+## Metodlar
+
+class CustomPageNumberPagination(PageNumberPagination):
+page_size=5 #_ sayfa sayısı. kaç adet page olacağını belirtiyoruz
+page_query_param='sayfa'  
+ #_ page yerine url'de hangi adı yazmak istiyorsak. default'u page'ti -> artık sayfa yazacak
+
+class CustomLimitOffsetPagination(LimitOffsetPagination):
+default_limit = 15
+#\* Limit kaç adet gösterileceği, offset başlayacağı değeri. limit=3&offset=123 --> burada 123'ten başlayarak 3 tane gösteriyor. Yani id'si 124, 125, 126 olanı gösteriyor
+
+class CustomCursorPagination(CursorPagination):
+cursor_query_param = 'imlec' #_ url'de ki adı değiştiriyor. default olarak cursor yazıyor
+page_size = 10 #_ bir sayfada 10 tane kayıt var. onu sınırlıyor
+ordering = '-number' #\* yazdığımız column'a göre sıralıyor. birşey yazmazsak yani sadece column adı yazarsak normal, başına - koyarsak tersten sıralıyor.
+
+<----------------------------------------------------------------------------------------->
+
+# MVS'deki Komutlar (views.py)
+
+## Importlar
+
+from .pagination import \*
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+## Komutlar
+
+    pagination_class = CustomPageNumberPagination
+    pagination_class = CustomLimitOffsetPagination
+    pagination_class = CustomCursorPagination
+    # Açıklamaları pagination.py'de yapıldı
+    # <------------------------------------------>
+    filter_backends=[DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields=['id', 'first_name', 'last_name'] # filter box'ta filtreleme işlemini hangi column'larda yapmak istiyorsak onları ekliyoruz
+    search_fields=['first_name','last_name']  #* ^ koyarsak ilk harfle olana göre arama yapıyor. Örn => ['^first_name'] bunu yazarsak sadece adının baş harfine göre arama yapıyoruz
+    ordering_fields = ['first_name','last_name']  #* filter boxta hangi seçenekler çıksın istiyorsanız onu yazıyorsunuz
+    ordering = ['last_name']  #* default olarak ilk açıldığında buraya yazdığımıza göre sıralıyor
