@@ -7,6 +7,15 @@ from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
 
+#? Authenticated import
+from rest_framework.permissions import (
+    IsAuthenticated,
+    IsAdminUser,
+    IsAuthenticatedOrReadOnly,
+
+    
+    )
+
 
 # my imports
 from .models import Student, Path
@@ -265,6 +274,27 @@ class StudentMVS(ModelViewSet):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
+    #?permission
+    #* herkes CRUD yapabilir
+    # permission_classes = [IsAuthenticated]
+    
+    #* sadece admin olan CRUD yapabilir
+    # permission_classes = [IsAdminUser]
+    
+    #* admin olan herşeyi yapar, olmayan sadece GET(read) yapar.
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+
+    #? Kullanıcıdan giriş yapmadıysa giriş ister sadece login olanlar dataları göebilir
+    # permission_classes = [IsAuthenticated]
+
+    #! Sadece admin olanlar process yapsın
+    # permission_classes = [IsAdminUser]
+
+    #? sadece okumayabiliriz login olmadan ama process içinlogin olmalısın
+    permission_classes = [IsAuthenticatedOrReadOnly ]
+
+
     pagination_class=CustomPageNumberPagination
     # pagination_class=CustomLimitOffsetPagination
     # pagination_class=CustomCursorPagination
