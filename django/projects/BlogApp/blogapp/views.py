@@ -19,6 +19,7 @@ class CategoryDetailCVS(RetrieveUpdateDestroyAPIView):
   serializer_class = CategorySerializer
 
 
+
 # class CategoryCreateCVS(CreateAPIView):
 #   queryset = Category.objects.all()
 #   serializer_class = CategorySerializer
@@ -28,6 +29,8 @@ class PostMVS(ModelViewSet):
 
     queryset=Post.objects.all()
     serializer_class = PostSerializer
+    filterset_fields = ['title']
+    search_fields = ['category']
 
     # @action(detail=False, methods=["GET"])
     # def student_count(self, request):
