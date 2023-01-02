@@ -28,4 +28,12 @@ class Post(models.Model):
     ordering = ("title",)  #!burası iterable olmalıdır
 
 
+class Author(models.Model):
+  post = models.ManyToOneRel(Post)  #? bu post yukarıdaki class
+  name = models.CharField(max_length=40)
+
+  def __str__(self):
+    return self.name
+
+
 
