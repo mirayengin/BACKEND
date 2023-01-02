@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     #myapps
     "blogapp",
+    "user",
+
 
     #thirtparty
     "rest_framework",
