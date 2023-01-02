@@ -44,7 +44,10 @@ INSTALLED_APPS = [
 
     #thirtparty
     "rest_framework",
-    "django_filters"
+    "django_filters",
+
+    #auth
+    'rest_framework.authtoken',
 
 ]
 
@@ -150,4 +153,11 @@ REST_FRAMEWORK = {
 
     # filter + search
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend', 'rest_framework.filters.SearchFilter', 'rest_framework.filters.OrderingFilter'],
+
+    #! TokenAuthentication
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
+
+
