@@ -25,8 +25,8 @@ class CategoryCVS(ListCreateAPIView):
   filterset_fields = ['name']
   search_fields = ['name']
   ordering_fields = ['id']
-
   permission_classes = [IsAdminUserOrReadOnly]  #! Dmin olan herşeyi olmayan yanlız get işlemini yapar
+
 
 class CategoryDetailCVS(RetrieveUpdateDestroyAPIView):
   queryset = Category.objects.all()
