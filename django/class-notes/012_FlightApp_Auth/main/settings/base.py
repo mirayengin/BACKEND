@@ -39,12 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #my app
-    "users",
     'rest_framework',
     'drf_yasg',
-    'debug_toolbar',
     'rest_framework.authtoken',
-    'dj_rest_auth'
+    'dj_rest_auth',
+    'users',
 
 ]
 
@@ -198,11 +197,15 @@ LOGGING = {
     },
 }
 # handlers iki farklı handler işlemi yapan loji kuran 
-# console ve file için i,ki farklı handler kullanılmış
-# consolda stream handler 
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ]
+}
+
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'users.serializers.CustomTokenSerializer',
+    
 }
