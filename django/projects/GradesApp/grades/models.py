@@ -46,7 +46,7 @@ class Grade(models.Model):
 
 
   def __str__(self):
-    return self.grade
+    return str(self.grade)
 
   class Meta:
     verbose_name = "Notlar"
