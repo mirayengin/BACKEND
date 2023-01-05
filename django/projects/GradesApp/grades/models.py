@@ -17,7 +17,7 @@ class Lesson(models.Model):
   teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)
 
   def __str__(self):
-    return self.name
+    return f'{self.name}, {self.teacher}'
 
   class Meta:
     verbose_name = "Dersler"
@@ -40,13 +40,13 @@ class Students(models.Model):
 
 
 class Grade(models.Model):
-  lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-  student = models.ForeignKey(Students, on_delete=models.CASCADE)
+  lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name="lesson_grades")
+  student = models.ForeignKey(Students, on_delete=models.CASCADE, related_name="student_grades")
   grade = models.IntegerField()
 
 
   def __str__(self):
-    return str(self.grade)
+    return f'{str(self.grade)} {self.lesson} {self.student}'
 
   class Meta:
     verbose_name = "Notlar"
