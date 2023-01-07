@@ -8,7 +8,7 @@ class Teacher(models.Model):
     return self.name
 
   class Meta:
-    verbose_name = "Ögretmen"
+    verbose_name = "Ogretmen"
 
 
 
