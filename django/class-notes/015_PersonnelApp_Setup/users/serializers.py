@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-
+from .models import Profile
 from dj_rest_auth.serializers import TokenSerializer
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -62,4 +62,25 @@ class CustomTokenSerializer(TokenSerializer):
     
     class Meta(TokenSerializer.Meta):
         fields = ("key", "user")
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ("id","diplay_name", "bio", "user")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
