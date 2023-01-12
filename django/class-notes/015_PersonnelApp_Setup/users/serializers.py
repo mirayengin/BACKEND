@@ -64,9 +64,19 @@ class CustomTokenSerializer(TokenSerializer):
         fields = ("key", "user")
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    user_id = serializers.IntegerField()
     class Meta:
         model = Profile
-        fields = ("id","diplay_name", "bio", "user")
+        fields = ("id","diplay_name", "bio", "user","user_id","avatar")
+
+    def update(self, instance, validated_data): #? burda user_id yi oomatik olarak gelmesini sağladık
+        instance = super().update(instance, validated_data)
+        instance.user_id = self.context["request"].user.id
+        instance.save()
+        return instance
+
+    
 
 
 
