@@ -1,0 +1,35 @@
+git clone ve sonra eploy edeeğimiz projenin code u
+
+ls yap ve clone olduğunu gör projenin
+
+cd ile bu projeye gir
+
+python -m venv env  kodunu run et
+
+source env/bin/activate env aktif et
+
+
+
+
+
+
+
+
+Neler yapildi adim adim
+1-https://www.pythonanywhere.com/login/ e git hesap ac
+ 2-
+3-burada projeyi canliya almak icin kullaniyoruz
+ 4-
+5-new consoledan bashe gir, islem uzun surebilir.
+6-ls komudu ile icindekilere bakabilir, rm -rf dosya adi ile istedigini silebilirsin
+7-repodan linkini al ve consola git clone <link> ile aktar
+8-cd ile proje icersine gir(backend kismina), daha sonra env kurulumu yap
+9- env aktif et, (ls -a ile gizli dosyalarida gorebilirsin),(cd .. ile ust dosyaya gecebilirsin)
+10-daha sonra requirements.txt deki kurulumlari yap(pip install -r requirements.txt)
+11-daha sonra dashborddan webe tikla,new web app ekle duzenlemeyi yap
+A>manuel configration sec ve python versyonunu sec
+B>acilan yerden code kisminda source code ve viryualenv de pathi ayarliyacagiz
+1>ls ile dosyaya bak ve dosyaya gir daha sonra pwd(cwd) ile cikan yolu kopyala ve code kismindaki source coda yapistir working dir. E de yapistir
+2>wsgi confige gir ve sadece django olan kisim kalacak kalanlar silinecek ve ilk iki satir haric yorumdan kaldir
+3> path yolu manage.py olan yol olucak basta aldigimiz yerle ayni
+4> os.environ ile baslayan yerde dosyamizin adini yazicaz, eger claruswayin reposundan aldiysaniz dosya adi (main)
